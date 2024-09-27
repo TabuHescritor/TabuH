@@ -1,0 +1,36 @@
+const books = [
+    { title: "A Luz da Alma", content: "Conteúdo do Livro A Luz da Alma..." },
+    { title: "Reflexões Espirituais", content: "Conteúdo do Livro Reflexões Espirituais..." },
+    { title: "Caminhos de Sabedoria", content: "Conteúdo do Livro Caminhos de Sabedoria..." }
+];
+
+const bookList = document.getElementById('books');
+const reader = document.getElementById('reader');
+const bookTitle = document.getElementById('book-title');
+const bookContent = document.getElementById('book-content');
+const backButton = document.getElementById('back-button');
+
+// Carregar livros dinamicamente
+function loadBooks() {
+    books.forEach((book, index) => {
+        const li = document.createElement('li');
+        li.textContent = book.title;
+        li.onclick = () => openBook(index);
+        bookList.appendChild(li);
+    });
+}
+
+function openBook(index) {
+    bookTitle.textContent = books[index].title;
+    bookContent.textContent = books[index].content;
+    bookList.parentElement.classList.add('hidden');
+    reader.classList.remove('hidden');
+}
+
+backButton.onclick = () => {
+    reader.classList.add('hidden');
+    bookList.parentElement.classList.remove('hidden');
+};
+
+// Carregar livros ao iniciar o aplicativo
+loadBooks();
